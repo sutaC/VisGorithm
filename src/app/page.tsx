@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 import ArrayDisplay, { Pointer } from "@/components/ArrayDisplay";
+import { bubleSort } from "@/algorithms/bubbleSort";
 
 function getRandomArray(size: number): number[] {
     const array = [];
@@ -28,12 +29,17 @@ export default function Home() {
         setArr(getRandomArray(10));
     };
 
+    const sortArr = () => {
+        setArr(bubleSort(arr));
+    };
+
     return (
         <main className={styles.main}>
             <h1>Array</h1>
             <ArrayDisplay array={arr} pointers={ptrs}></ArrayDisplay>
             <button onClick={updatePtr}>+</button>
             <button onClick={randArr}>Rand</button>
+            <button onClick={sortArr}>Sort</button>
         </main>
     );
 }
