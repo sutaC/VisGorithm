@@ -41,6 +41,7 @@ export async function bubleSortEnhanced(
                 // Swap
                 swap(arr, j - 1, j);
                 update(arr, [pointer(j - 1, "red"), pointer(j, "green")]);
+                await wait(500);
             } else {
                 // No update
                 update(arr, [pointer(j - 1, "yellow"), pointer(j, "yellow")]);
@@ -48,6 +49,7 @@ export async function bubleSortEnhanced(
             }
 
             // Next
+            update(arr, [pointer(j - 1, "gray")]);
             await wait(500);
         }
     }
