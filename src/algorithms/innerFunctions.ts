@@ -1,3 +1,10 @@
+import { Pointer } from "@/components/ArrayDisplay";
+
+// Types
+export type UpdateFunction = (array: number[], pointers: Pointer[]) => void;
+export type PointCodeFunction = (codePointer: number | null) => void;
+
+// Functions
 export function swap(array: number[], a: number, b: number) {
     const tmp = array[a];
     array[a] = array[b];
@@ -17,4 +24,10 @@ export function getRandomArray(size: number): number[] {
     return array;
 }
 
-export const tab: string = "&emsp;";
+export function pointer(index: number, style: string): Pointer {
+    return { index, style };
+}
+
+export function clone(v: any): any {
+    return structuredClone(v);
+}

@@ -5,6 +5,7 @@ export function CodeDisplay(prop: { code: string[]; pointer?: number | null }) {
         <div className={styles.display}>
             {prop.code.map((line, idx) => (
                 <pre
+                    key={idx}
                     className={`
                         ${styles.line} 
                         ${idx === prop.pointer ? styles.pointer : ""}`}

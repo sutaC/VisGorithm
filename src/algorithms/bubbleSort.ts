@@ -1,11 +1,16 @@
 import { Pointer } from "@/components/ArrayDisplay";
+import {
+    PointCodeFunction,
+    UpdateFunction,
+    clone,
+    pointer,
+} from "./innerFunctions";
 import { swap, wait } from "./innerFunctions";
 import styles from "@/components/ArrayDisplay.module.css";
 
 // Original
-
 export function bubleSort(arr: number[]): number[] {
-    const array = structuredClone(arr);
+    const array: number[] = clone(arr);
     for (let i = 0; i < array.length - 1; i++) {
         for (let j = 1; j < array.length - i; j++) {
             if (array[j - 1] > array[j]) {
@@ -17,20 +22,15 @@ export function bubleSort(arr: number[]): number[] {
 }
 
 // Enhanced
-
-function pointer(index: number, style: string): Pointer {
-    return { index, style };
-}
-
 const pTime = 250;
 const uTime = 500;
 
 export async function bubleSortEnhanced(
     arr: number[],
-    update: (array: number[], pointers: Pointer[]) => void,
-    pointCode: (codePointer: number | null) => void
+    update: UpdateFunction,
+    pointCode: PointCodeFunction
 ): Promise<void> {
-    const array = structuredClone(arr);
+    const array: number[] = clone(arr);
 
     const sortedPtrs: Pointer[] = [];
 
@@ -44,11 +44,8 @@ export async function bubleSortEnhanced(
         await wait(pTime);
 
         for (let j = 1; j < array.length - i; j++) {
-            // Inner loop
-            pointCode(2);
-            await wait(pTime);
-
             // Traverse
+            pointCode(2);
             update(array, [pointer(j - 1, styles.index), ...sortedPtrs]);
             await wait(uTime);
 
