@@ -4,17 +4,16 @@ import styles from "@/components/ArrayDisplay.module.css";
 
 // Original
 
-export function bubleSort(array: number[]): number[] {
-    const arr = structuredClone(array);
-
-    for (let i = 0; i < arr.length - 1; i++) {
-        for (let j = 1; j < arr.length - i; j++) {
-            if (arr[j - 1] > arr[j]) {
-                swap(arr, j - 1, j);
+export function bubleSort(arr: number[]): number[] {
+    const array = structuredClone(arr);
+    for (let i = 0; i < array.length - 1; i++) {
+        for (let j = 1; j < array.length - i; j++) {
+            if (array[j - 1] > array[j]) {
+                swap(array, j - 1, j);
             }
         }
     }
-    return arr;
+    return array;
 }
 
 // Enhanced
@@ -27,11 +26,11 @@ const pTime = 250;
 const uTime = 500;
 
 export async function bubleSortEnhanced(
-    array: number[],
+    arr: number[],
     update: (array: number[], pointers: Pointer[]) => void,
     pointCode: (codePointer: number | null) => void
 ): Promise<void> {
-    const arr = structuredClone(array);
+    const array = structuredClone(arr);
 
     const sortedPtrs: Pointer[] = [];
 
@@ -39,36 +38,36 @@ export async function bubleSortEnhanced(
     pointCode(0);
     await wait(uTime);
 
-    for (let i = 0; i < arr.length - 1; i++) {
+    for (let i = 0; i < array.length - 1; i++) {
         // Outer loop
         pointCode(1);
         await wait(pTime);
 
-        for (let j = 1; j < arr.length - i; j++) {
+        for (let j = 1; j < array.length - i; j++) {
             // Inner loop
             pointCode(2);
             await wait(pTime);
 
             // Traverse
-            update(arr, [pointer(j - 1, styles.index), ...sortedPtrs]);
+            update(array, [pointer(j - 1, styles.index), ...sortedPtrs]);
             await wait(uTime);
 
             // If condition
             pointCode(3);
             await wait(pTime);
-            if (arr[j - 1] > arr[j]) {
+            if (array[j - 1] > array[j]) {
                 // Swap
                 pointCode(4);
-                update(arr, [
+                update(array, [
                     pointer(j - 1, styles.swapGreater),
                     pointer(j, styles.swapSmaller),
                     ...sortedPtrs,
                 ]);
                 await wait(uTime * 2);
-                swap(arr, j - 1, j);
+                swap(array, j - 1, j);
             } else {
                 // No swap
-                update(arr, [
+                update(array, [
                     pointer(j - 1, styles.nonSwap),
                     pointer(j, styles.nonSwap),
                     ...sortedPtrs,
@@ -77,11 +76,11 @@ export async function bubleSortEnhanced(
             }
 
             // Next
-            if (j >= arr.length - i - 1) {
+            if (j >= array.length - i - 1) {
                 // Sorted section
-                sortedPtrs.push(pointer(arr.length - i - 1, styles.sorted));
+                sortedPtrs.push(pointer(array.length - i - 1, styles.sorted));
             }
-            update(arr, [pointer(j - 1, styles.index), ...sortedPtrs]);
+            update(array, [pointer(j - 1, styles.index), ...sortedPtrs]);
             await wait(uTime);
         }
     }
