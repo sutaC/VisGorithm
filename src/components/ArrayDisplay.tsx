@@ -5,6 +5,16 @@ export interface Pointer {
     style: string;
 }
 
+function applyStyles(index: number, pointers: Pointer[]): string {
+    let out = "";
+    pointers.forEach((ptr) => {
+        if (ptr.index === index) {
+            out += " " + ptr.style;
+        }
+    });
+    return out;
+}
+
 export default function ArrayDisplay(prop: {
     array: number[];
     pointers?: Pointer[];
@@ -17,8 +27,9 @@ export default function ArrayDisplay(prop: {
                     className={`
                         ${style.cell} 
                         ${
-                            prop.pointers?.find((ptr) => ptr.index === index)
-                                ?.style
+                            prop.pointers
+                                ? applyStyles(index, prop.pointers)
+                                : ""
                         }
                         `}
                 >

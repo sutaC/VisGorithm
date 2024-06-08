@@ -1,11 +1,11 @@
 import styles from "./page.module.css";
-import { BubbleSortDisplay } from "@/components/algorithms/BubbleSortDisplay";
+import { InsertionSortDisplay } from "@/components/algorithms/InsertionSortDisplay";
 
 export default function Home() {
     return (
         <main className={styles.main}>
-            <h1>Bubble Sort</h1>
-            <BubbleSortDisplay />
+            <h1>Insertion Sort</h1>
+            <InsertionSortDisplay />
         </main>
     );
 }
