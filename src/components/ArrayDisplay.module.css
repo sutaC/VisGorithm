@@ -17,6 +17,20 @@
     align-items: center;
 }
 
+/* Animations */
+
+@keyframes swapLeft {
+    to {
+        translate: calc(-100% - 4px) 0;
+    }
+}
+
+@keyframes swapRight {
+    to {
+        translate: calc(100% + 4px) 0;
+    }
+}
+
 /* Special states */
 
 :where(.index, .nonSwap, .swapGreater, .swapSmaller) {
@@ -36,9 +50,11 @@
 .swapGreater {
     outline: 2px solid green;
     background-color: lightgreen;
+    animation: swapRight 500ms ease-in-out 0ms 1 normal forwards;
 }
 
 .swapSmaller {
     outline: 2px solid red;
     background-color: lightcoral;
+    animation: swapLeft 500ms ease-in-out 0ms 1 normal forwards;
 }

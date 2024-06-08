@@ -40,15 +40,10 @@ export async function bubleSortEnhanced(
                     pointer(j - 1, styles.swapGreater),
                     pointer(j, styles.swapSmaller),
                 ]);
-                await wait(500);
+                await wait(1000);
 
                 // Swap
                 swap(arr, j - 1, j);
-                update(arr, [
-                    pointer(j - 1, styles.swapSmaller),
-                    pointer(j, styles.swapGreater),
-                ]);
-                await wait(500);
             } else {
                 // No update
                 update(arr, [
