@@ -73,7 +73,7 @@ export async function bubleSortEnhanced(
                     pointer(j, styles.nonSwap),
                     ...sortedPtrs,
                 ]);
-                await wait(uTime);
+                await wait(uTime * 2);
             }
 
             // Next
