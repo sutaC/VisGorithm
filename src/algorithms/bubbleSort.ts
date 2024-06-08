@@ -73,3 +73,15 @@ export async function bubleSortEnhanced(
     sortedPtrs.push(pointer(1, styles.sorted));
     update(arr, sortedPtrs);
 }
+
+export const codeLines: string[] = [
+    "function bubleSort(array: number[]): void {",
+    "   for (let i = 0; i < array.length; i++) {",
+    "       for (let j = 1; j < array.length - i; j++) {",
+    "           if (array[j - 1] > array[j]) {",
+    "               swap(array, j - 1, j);",
+    "           }",
+    "       }",
+    "   }",
+    "}",
+];
