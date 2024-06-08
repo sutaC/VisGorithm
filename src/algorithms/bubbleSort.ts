@@ -59,11 +59,13 @@ export async function bubleSortEnhanced(
             }
 
             // Next
+            if (j >= arr.length - i - 1) {
+                // Sorted section
+                sortedPtrs.push(pointer(arr.length - i - 1, styles.sorted));
+            }
             update(arr, [pointer(j - 1, styles.index), ...sortedPtrs]);
             await wait(500);
         }
-        // Sorted section
-        sortedPtrs.push(pointer(arr.length - i - 1, styles.sorted));
     }
 
     // End
