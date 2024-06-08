@@ -23,39 +23,57 @@ function pointer(index: number, style: string): Pointer {
     return { index, style };
 }
 
+const pTime = 250;
+const uTime = 500;
+
 export async function bubleSortEnhanced(
     array: number[],
-    update: (array: number[], pointers: Pointer[]) => void
+    update: (array: number[], pointers: Pointer[]) => void,
+    pointCode: (codePointer: number | null) => void
 ): Promise<void> {
     const arr = structuredClone(array);
 
     const sortedPtrs: Pointer[] = [];
 
+    // Start
+    pointCode(0);
+    await wait(pTime);
+
     for (let i = 0; i < arr.length; i++) {
+        // Outer loop
+        pointCode(1);
+        await wait(pTime);
+
         for (let j = 1; j < arr.length - i; j++) {
+            // Inner loop
+            pointCode(2);
+            await wait(pTime);
+
             // Traverse
             update(arr, [pointer(j - 1, styles.index), ...sortedPtrs]);
-            await wait(500);
+            await wait(uTime);
 
+            // If condition
+            pointCode(3);
+            await wait(pTime);
             if (arr[j - 1] > arr[j]) {
-                // Update
+                // Swap
+                pointCode(4);
                 update(arr, [
                     pointer(j - 1, styles.swapGreater),
                     pointer(j, styles.swapSmaller),
                     ...sortedPtrs,
                 ]);
-                await wait(1000);
-
-                // Swap
+                await wait(uTime * 2);
                 swap(arr, j - 1, j);
             } else {
-                // No update
+                // No swap
                 update(arr, [
                     pointer(j - 1, styles.nonSwap),
                     pointer(j, styles.nonSwap),
                     ...sortedPtrs,
                 ]);
-                await wait(500);
+                await wait(uTime);
             }
 
             // Next
@@ -64,11 +82,12 @@ export async function bubleSortEnhanced(
                 sortedPtrs.push(pointer(arr.length - i - 1, styles.sorted));
             }
             update(arr, [pointer(j - 1, styles.index), ...sortedPtrs]);
-            await wait(500);
+            await wait(uTime);
         }
     }
 
     // End
+    pointCode(null);
     sortedPtrs.push(pointer(0, styles.sorted));
     sortedPtrs.push(pointer(1, styles.sorted));
     update(arr, sortedPtrs);
