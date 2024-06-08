@@ -2,7 +2,7 @@ import style from "./ArrayDisplay.module.css";
 
 export interface Pointer {
     index: number;
-    color: string;
+    style: string;
 }
 
 export default function ArrayDisplay(prop: {
@@ -14,12 +14,13 @@ export default function ArrayDisplay(prop: {
             {prop.array.map((val, index) => (
                 <div
                     key={index}
-                    className={style.cell}
-                    style={{
-                        background:
+                    className={`
+                        ${style.cell} 
+                        ${
                             prop.pointers?.find((ptr) => ptr.index === index)
-                                ?.color || "transparent",
-                    }}
+                                ?.style
+                        }
+                        `}
                 >
                     {val}
                 </div>

@@ -15,7 +15,7 @@ function getRandomArray(size: number): number[] {
 }
 
 export default function Home() {
-    const [arr, setArr] = useState<number[]>([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+    const [arr, setArr] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     const [ptrs, setPtrs] = useState<Pointer[]>([]);
 
     const randArr = () => {

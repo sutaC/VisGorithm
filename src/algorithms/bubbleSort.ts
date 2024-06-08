@@ -1,5 +1,6 @@
 import { Pointer } from "@/components/ArrayDisplay";
 import { swap, wait } from "./innerFunctions";
+import styles from "@/components/ArrayDisplay.module.css";
 
 // Original
 
@@ -18,8 +19,8 @@ export function bubleSort(array: number[]): number[] {
 
 // Enhanced
 
-function pointer(index: number, color: string): Pointer {
-    return { index, color };
+function pointer(index: number, style: string): Pointer {
+    return { index, style };
 }
 
 export async function bubleSortEnhanced(
@@ -30,26 +31,35 @@ export async function bubleSortEnhanced(
     for (let i = 0; i < arr.length; i++) {
         for (let j = 1; j < arr.length - i; j++) {
             // Traverse
-            update(arr, [pointer(j - 1, "gray")]);
+            update(arr, [pointer(j - 1, styles.index)]);
             await wait(500);
 
             if (arr[j - 1] > arr[j]) {
                 // Update
-                update(arr, [pointer(j - 1, "green"), pointer(j, "red")]);
+                update(arr, [
+                    pointer(j - 1, styles.swapGreater),
+                    pointer(j, styles.swapSmaller),
+                ]);
                 await wait(500);
 
                 // Swap
                 swap(arr, j - 1, j);
-                update(arr, [pointer(j - 1, "red"), pointer(j, "green")]);
+                update(arr, [
+                    pointer(j - 1, styles.swapSmaller),
+                    pointer(j, styles.swapGreater),
+                ]);
                 await wait(500);
             } else {
                 // No update
-                update(arr, [pointer(j - 1, "yellow"), pointer(j, "yellow")]);
+                update(arr, [
+                    pointer(j - 1, styles.nonSwap),
+                    pointer(j, styles.nonSwap),
+                ]);
                 await wait(500);
             }
 
             // Next
-            update(arr, [pointer(j - 1, "gray")]);
+            update(arr, [pointer(j - 1, styles.index)]);
             await wait(500);
         }
     }

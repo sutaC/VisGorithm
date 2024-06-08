@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 4px;
+    isolation: isolate;
 }
 
 .cell {
@@ -13,4 +15,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Special states */
+
+:where(.index, .nonSwap, .swapGreater, .swapSmaller) {
+    border-color: gray;
+    z-index: 10;
+}
+
+.index {
+    outline: 2px solid violet;
+}
+
+.nonSwap {
+    outline: 2px solid yellow;
+    background-color: lightyellow;
+}
+
+.swapGreater {
+    outline: 2px solid green;
+    background-color: lightgreen;
+}
+
+.swapSmaller {
+    outline: 2px solid red;
+    background-color: lightcoral;
 }
