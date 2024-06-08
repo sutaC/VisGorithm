@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import ArrayDisplay, { Pointer } from "@/components/ArrayDisplay";
 import { bubleSortEnhanced } from "@/algorithms/bubbleSort";
 import { getRandomArray } from "@/algorithms/innerFunctions";
+import { CodeDisplay } from "../CodeDisplay";
+import { codeLines } from "@/algorithms/bubbleSort";
 
 export function BubbleSortDisplay() {
     const [arr, setArr] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -33,6 +35,9 @@ export function BubbleSortDisplay() {
     return (
         <div className={styles.display}>
             <ArrayDisplay array={arr} pointers={ptrs}></ArrayDisplay>
+
+            <CodeDisplay code={codeLines} pointer={0} />
+
             <div className={styles.controls}>
                 <button onClick={randArr} disabled={isRunningRef.current}>
                     Rand

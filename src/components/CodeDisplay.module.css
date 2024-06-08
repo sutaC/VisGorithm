@@ -1,0 +1,17 @@
+.display {
+    margin: 1rem auto;
+    max-width: 30rem;
+    text-align: left;
+    padding: 0.25rem;
+    border: 1px solid #000;
+}
+
+.line {
+    tab-size: 1rem;
+    margin: 0;
+    background-color: aliceblue;
+}
+
+.pointer {
+    background-color: lightsalmon;
+}

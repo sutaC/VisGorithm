@@ -16,3 +16,5 @@ export function getRandomArray(size: number): number[] {
     }
     return array;
 }
+
+export const tab: string = "&emsp;";
