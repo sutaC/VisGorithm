@@ -3,6 +3,11 @@ import { Pointer } from "@/components/ArrayDisplay";
 // Types
 export type UpdateFunction = (array: number[], pointers: Pointer[]) => void;
 export type PointCodeFunction = (codePointer: number | null) => void;
+export type EnhancedSortingFunction = (
+    arr: number[],
+    update: UpdateFunction,
+    pointCode: PointCodeFunction
+) => Promise<void>;
 
 // Functions
 export function swap(array: number[], a: number, b: number) {
