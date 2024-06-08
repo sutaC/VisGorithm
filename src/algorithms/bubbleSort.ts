@@ -7,7 +7,7 @@ import styles from "@/components/ArrayDisplay.module.css";
 export function bubleSort(array: number[]): number[] {
     const arr = structuredClone(array);
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length - 1; i++) {
         for (let j = 1; j < arr.length - i; j++) {
             if (arr[j - 1] > arr[j]) {
                 swap(arr, j - 1, j);
@@ -37,9 +37,9 @@ export async function bubleSortEnhanced(
 
     // Start
     pointCode(0);
-    await wait(pTime);
+    await wait(uTime);
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length - 1; i++) {
         // Outer loop
         pointCode(1);
         await wait(pTime);
@@ -95,7 +95,7 @@ export async function bubleSortEnhanced(
 
 export const codeLines: string[] = [
     "function bubleSort(array: number[]): void {",
-    "   for (let i = 0; i < array.length; i++) {",
+    "   for (let i = 0; i < array.length - 1; i++) {",
     "       for (let j = 1; j < array.length - i; j++) {",
     "           if (array[j - 1] > array[j]) {",
     "               swap(array, j - 1, j);",
