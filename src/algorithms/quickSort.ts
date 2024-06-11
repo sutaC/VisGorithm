@@ -7,6 +7,7 @@ import {
     swap,
     wait,
 } from "./innerFunctions";
+import { Pointer } from "@/components/ArrayDisplay";
 
 // Original
 function partition(array: number[], lo: number, hi: number): number {
@@ -45,25 +46,36 @@ async function partitionEnhanced(
     update: UpdateFunction,
     pointCode: PointCodeFunction
 ): Promise<number> {
+    // Borders
+    const bdrs: Pointer[] = [
+        pointer(lo, style.borderStart),
+        pointer(hi, style.borderEnd),
+    ];
+
     // Start fn
     pointCode(0);
-    await wait(250);
+    update(array, bdrs);
+    await wait(500);
 
     // Pivot
     pointCode(1);
-    await wait(250);
+    await wait(500);
     const pivot = array[hi];
 
     // Idx trav
     let idx = lo;
     pointCode(2);
-    update(array, [pointer(idx, style.highlight)]);
+    update(array, [pointer(idx, style.highlight), ...bdrs]);
     await wait(500);
 
     for (let i = lo; i < hi; i++) {
         // Loop
         pointCode(3);
-        update(array, [pointer(i, style.idx), pointer(idx, style.highlight)]);
+        update(array, [
+            pointer(i, style.idx),
+            pointer(idx, style.highlight),
+            ...bdrs,
+        ]);
         await wait(500);
 
         // If
@@ -75,6 +87,7 @@ async function partitionEnhanced(
             update(array, [
                 pointer(idx, `${style.greater} ${style.fadeOut}`),
                 pointer(i, `${style.smaller} ${style.fadeOut}`),
+                ...bdrs,
             ]);
             await wait(500);
             // In
@@ -82,21 +95,30 @@ async function partitionEnhanced(
             update(array, [
                 pointer(idx, `${style.greater} ${style.fadeIn}`),
                 pointer(i, `${style.smaller} ${style.fadeIn}`),
+                ...bdrs,
             ]);
             await wait(500);
 
             // Idx increment
             pointCode(6);
+            update(array, [
+                pointer(i, style.idx),
+                pointer(idx, style.highlight),
+                ...bdrs,
+            ]);
+            await wait(250);
             idx++;
             update(array, [
                 pointer(i, style.idx),
                 pointer(idx, style.highlight),
+                ...bdrs,
             ]);
-            await wait(500);
+            await wait(250);
         } else {
             update(array, [
                 pointer(idx, style.nonSwap),
                 pointer(i, style.nonSwap),
+                ...bdrs,
             ]);
             await wait(1000);
         }
@@ -108,6 +130,7 @@ async function partitionEnhanced(
     update(array, [
         pointer(idx, `${style.greater} ${style.fadeOut}`),
         pointer(hi, `${style.smaller} ${style.fadeOut}`),
+        ...bdrs,
     ]);
     await wait(500);
     // In
@@ -115,6 +138,7 @@ async function partitionEnhanced(
     update(array, [
         pointer(idx, `${style.greater} ${style.fadeIn}`),
         pointer(hi, `${style.smaller} ${style.fadeIn}`),
+        ...bdrs,
     ]);
     await wait(500);
 
@@ -131,28 +155,34 @@ async function quickSortRecursiveEnhanced(
     update: UpdateFunction,
     pointCode: PointCodeFunction
 ): Promise<void> {
+    const bdrs: Pointer[] = [
+        pointer(lo, style.borderStart),
+        pointer(hi, style.borderEnd),
+    ];
+
     // Start fn
     pointCode(12);
-    await wait(250);
+    update(array, bdrs);
+    await wait(500);
 
     // Base case
     pointCode(13);
-    await wait(250);
+    await wait(500);
     if (lo >= hi) {
         // Return
         pointCode(14);
-        await wait(250);
+        await wait(500);
         return;
     }
 
     // Partition call
     pointCode(15);
-    await wait(250);
+    await wait(500);
     const pivotIdx = await partitionEnhanced(array, lo, hi, update, pointCode);
 
     // Rec call
     pointCode(16);
-    await wait(250);
+    await wait(500);
     await quickSortRecursiveEnhanced(
         array,
         lo,
@@ -162,7 +192,7 @@ async function quickSortRecursiveEnhanced(
     );
 
     pointCode(17);
-    await wait(250);
+    await wait(500);
     await quickSortRecursiveEnhanced(
         array,
         pivotIdx + 1,
@@ -179,11 +209,11 @@ export async function quickSortEnhanced(
 ): Promise<void> {
     // Start
     pointCode(20);
-    await wait(250);
+    await wait(500);
     const array: number[] = clone(arr);
     // Rec call
     pointCode(21);
-    await wait(250);
+    await wait(500);
     await quickSortRecursiveEnhanced(
         array,
         0,
@@ -191,6 +221,13 @@ export async function quickSortEnhanced(
         update,
         pointCode
     );
+    pointCode(null);
+
+    const sorted: Pointer[] = [];
+    for (let i = 0; i < array.length; i++) {
+        sorted.push(pointer(i, style.sorted));
+    }
+    update(array, sorted);
 }
 
 // Code lines
