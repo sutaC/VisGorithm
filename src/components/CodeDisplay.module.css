@@ -1,6 +1,6 @@
 .display {
     margin: 1em auto;
-    max-width: 30rem;
+    max-width: 40rem;
     text-align: left;
     padding: 0.25rem;
     border: 1px solid #000;
@@ -18,7 +18,12 @@
 }
 
 .line::before {
-    content: counter(lines) ": ";
+    display: inline-block;
+    text-align: right;
+    content: counter(lines) ":";
+    width: 1.75em;
+    padding-right: 0.25em;
+    margin-right: 0.25em;
     background-color: lightsteelblue;
 }
 
