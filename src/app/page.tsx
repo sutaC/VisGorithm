@@ -5,6 +5,8 @@ import styles from "./page.module.css";
 import { BubbleSortDisplay } from "@/components/algorithms/BubbleSortDisplay";
 import { InsertionSortDisplay } from "@/components/algorithms/InsertionSortDisplay";
 import { SelectionSortDisplay } from "@/components/algorithms/SelectionSortDisplay";
+import { testSort } from "@/algorithms/innerFunctions";
+import { quickSort } from "@/algorithms/quickSort";
 
 function selectAlgorithm(name: string): JSX.Element {
     switch (name) {
