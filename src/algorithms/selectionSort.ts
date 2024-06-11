@@ -90,7 +90,8 @@ export async function selectionSortEnhanced(
         // Swap
         pointCode(8);
         await wait(250);
-        if (min !== i) {
+        if (min - 1 > i) {
+            // Long swap
             // Out
             update(array, [
                 pointer(i, `${style.swapRightFadeOut} ${style.greater}`),
@@ -107,12 +108,25 @@ export async function selectionSortEnhanced(
                 ...sorted,
             ]);
             await wait(500);
+        } else if (min - 1 === i) {
+            // Short swap
+            update(array, [
+                pointer(i, `${style.swapRight} ${style.greater}`),
+                pointer(min, `${style.swapLeft} ${style.smaller}`),
+                ...sorted,
+            ]);
+            await wait(1000);
+
+            // In
+            swap(array, i, min);
         }
 
         sorted.push(pointer(i, style.sorted));
     }
 
+    sorted.push(pointer(array.length - 1, style.sorted));
     pointCode(null);
+    update(array, sorted);
 }
 
 // Code
