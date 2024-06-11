@@ -54,6 +54,7 @@ export async function linearSearchEnhanced(
     // Not found
     const notFound: Pointer[] = [];
     array.forEach((v, i) => notFound.push(pointer(i, style.notFound)));
+    pointCode(6);
     update(array, notFound);
     return;
 }

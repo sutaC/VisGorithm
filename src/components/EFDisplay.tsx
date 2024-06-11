@@ -29,12 +29,13 @@ export function EFDisplay(props: {
         setArr(getRandomArray(10));
         if (props.options?.sorted) setArr(quickSort(arr));
         if (props.options?.search) {
-            const setRandom = Math.random() > 0.5;
+            const foundable = Math.random() > 0.95;
             let val: number;
-            if (setRandom) {
-                [val] = getRandomArray(1);
-            } else {
+            if (foundable) {
                 val = arr[Math.floor(Math.random() * arr.length)];
+            } else {
+                // Random
+                [val] = getRandomArray(1);
             }
             setNeedle(val);
         }
@@ -72,7 +73,14 @@ export function EFDisplay(props: {
 
     return (
         <div className={styles.display}>
-            {props.options?.search ? <p>Search for: {needle}</p> : <></>}
+            {props.options?.search ? (
+                <p>
+                    Search for: {needle} -{" "}
+                    {arr.includes(needle) ? "has" : "not"}
+                </p>
+            ) : (
+                <></>
+            )}
 
             <ArrayDisplay array={arr} pointers={ptrs}></ArrayDisplay>
 
