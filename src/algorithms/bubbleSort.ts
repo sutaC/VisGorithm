@@ -86,7 +86,7 @@ export async function bubleSortEnhanced(
     pointCode(null);
     sortedPtrs.push(pointer(0, styles.sorted));
     sortedPtrs.push(pointer(1, styles.sorted));
-    update(arr, sortedPtrs);
+    update(array, sortedPtrs);
 }
 
 export const codeLines: string[] = [
