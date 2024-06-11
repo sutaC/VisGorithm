@@ -5,8 +5,7 @@ import styles from "./page.module.css";
 import { BubbleSortDisplay } from "@/components/algorithms/BubbleSortDisplay";
 import { InsertionSortDisplay } from "@/components/algorithms/InsertionSortDisplay";
 import { SelectionSortDisplay } from "@/components/algorithms/SelectionSortDisplay";
-import { testSort } from "@/algorithms/innerFunctions";
-import { quickSort } from "@/algorithms/quickSort";
+import { QuickSortDisplay } from "@/components/algorithms/QucikSortDisplay";
 
 function selectAlgorithm(name: string): JSX.Element {
     switch (name) {
@@ -16,6 +15,8 @@ function selectAlgorithm(name: string): JSX.Element {
             return <InsertionSortDisplay />;
         case "SelectionSort":
             return <SelectionSortDisplay />;
+        case "QuickSort":
+            return <QuickSortDisplay />;
         default:
             console.warn(
                 `No algorithm was selected with provided name: ${name}`
@@ -36,6 +37,7 @@ export default function Home() {
                     <option value="BubbleSort">Bubble Sort</option>
                     <option value="InsertionSort">Insertion Sort</option>
                     <option value="SelectionSort">Selection Sort</option>
+                    <option value="QuickSort">Quick Sort</option>
                 </select>
             </header>
             <main className={styles.main}>
