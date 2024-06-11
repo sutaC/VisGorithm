@@ -54,6 +54,7 @@ export async function bubleSortEnhanced(
             await wait(pTime);
             if (array[j - 1] > array[j]) {
                 // Swap
+                // TODO: fix swap
                 pointCode(4);
                 update(array, [
                     pointer(j - 1, styles.swapGreater),

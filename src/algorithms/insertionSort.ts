@@ -53,6 +53,7 @@ export async function insertionSortEnhanced(
             await wait(uTime);
 
             // Swap
+            // TODO: fix swap
             pointCode(3);
             update(array, [
                 pointer(j - 1, styles.swapGreater),
