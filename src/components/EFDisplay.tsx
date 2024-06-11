@@ -29,8 +29,14 @@ export function EFDisplay(props: {
         setArr(getRandomArray(10));
         if (props.options?.sorted) setArr(quickSort(arr));
         if (props.options?.search) {
-            const randIdx = Math.floor(Math.random() * arr.length);
-            setNeedle(arr[randIdx]);
+            const setRandom = Math.random() > 0.5;
+            let val: number;
+            if (setRandom) {
+                [val] = getRandomArray(1);
+            } else {
+                val = arr[Math.floor(Math.random() * arr.length)];
+            }
+            setNeedle(val);
         }
         setPtrs([]);
         setCodePtr(null);
