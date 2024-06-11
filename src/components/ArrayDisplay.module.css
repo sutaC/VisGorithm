@@ -139,3 +139,17 @@
     border-right-color: red;
     border-right-width: 2px;
 }
+
+@supports selector(:has(*)) {
+    *:has(~ .borderStart) {
+        opacity: 0.25;
+    }
+
+    .borderEnd ~ * {
+        opacity: 0.25;
+    }
+
+    .borderStart ~ .cell:has(~ .borderEnd) {
+        opacity: 1;
+    }
+}
