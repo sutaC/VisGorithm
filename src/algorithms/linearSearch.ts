@@ -24,6 +24,8 @@ export async function linearSearchEnhanced(
     update: UpdateFunction,
     pointCode: PointCodeFunction
 ): Promise<void> {
+    const notFound: Pointer[] = [];
+
     // Start
     pointCode(0);
     await wait(500);
@@ -31,29 +33,28 @@ export async function linearSearchEnhanced(
     for (let i = 0; i < array.length; i++) {
         // Loop
         pointCode(1);
-        update(array, [pointer(i, style.index)]);
+        update(array, [pointer(i, style.index), ...notFound]);
         await wait(500);
 
         // If
         pointCode(2);
-        update(array, [pointer(i, style.nonSwap)]);
+        update(array, [pointer(i, style.nonSwap), ...notFound]);
         await wait(500);
         if (array[i] === needle) {
             pointCode(3);
-            update(array, [pointer(i, style.greater)]);
+            update(array, [pointer(i, style.greater), ...notFound]);
             await wait(500);
             // Found
             return;
         }
 
         // Next
-        update(array, [pointer(i, style.smaller)]);
+        notFound.push(pointer(i, style.notFound));
+        update(array, [pointer(i, style.smaller), ...notFound]);
         await wait(500);
     }
 
     // Not found
-    const notFound: Pointer[] = [];
-    array.forEach((v, i) => notFound.push(pointer(i, style.notFound)));
     pointCode(6);
     update(array, notFound);
     return;
