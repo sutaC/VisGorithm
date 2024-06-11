@@ -6,7 +6,7 @@ import {
     EnhancedSearchFunction,
     getRandomArray,
 } from "@/algorithms/innerFunctions";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { quickSort } from "@/algorithms/quickSort";
 
 export function EFDisplay(props: {
@@ -20,26 +20,26 @@ export function EFDisplay(props: {
 
     // search
     const [needle, setNeedle] = useState<number>(0);
+    const [searchNon, setSearchNon] = useState(false);
 
     let [isRunning, setIsRunning] = useState(false);
     let [isDone, setIsDone] = useState(false);
 
     const randArr = () => {
         if (isRunning) return;
-        setArr(getRandomArray(10));
-        if (props.options?.sorted) setArr(quickSort(arr));
+        let newArr = getRandomArray(10);
+        if (props.options?.sorted) newArr = quickSort(newArr);
         if (props.options?.search) {
-            const foundable = Math.random() > 0.95;
             let val: number;
-            if (foundable) {
-                val = arr[Math.floor(Math.random() * arr.length)];
+            if (searchNon) {
+                val = -1;
             } else {
-                // Random
-                [val] = getRandomArray(1);
+                val = newArr[Math.floor(Math.random() * newArr.length)];
             }
             setNeedle(val);
         }
         setPtrs([]);
+        setArr(newArr);
         setCodePtr(null);
         setIsDone(false);
     };
@@ -73,14 +73,7 @@ export function EFDisplay(props: {
 
     return (
         <div className={styles.display}>
-            {props.options?.search ? (
-                <p>
-                    Search for: {needle} -{" "}
-                    {arr.includes(needle) ? "has" : "not"}
-                </p>
-            ) : (
-                <></>
-            )}
+            {props.options?.search ? <p>Search for: {needle}</p> : <></>}
 
             <ArrayDisplay array={arr} pointers={ptrs}></ArrayDisplay>
 
@@ -93,6 +86,20 @@ export function EFDisplay(props: {
                 <button onClick={sortArr} disabled={isRunning || isDone}>
                     Run
                 </button>
+
+                {props.options?.search ? (
+                    <div className="field">
+                        <label htmlFor="searchNon">Not foundable: </label>
+                        <input
+                            type="checkbox"
+                            id="searchNon"
+                            checked={searchNon}
+                            onChange={(e) => setSearchNon(e.target.checked)}
+                        />
+                    </div>
+                ) : (
+                    <></>
+                )}
             </div>
         </div>
     );

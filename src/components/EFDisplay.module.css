@@ -6,6 +6,7 @@
     margin: 1rem 0;
 }
 
-.controls button {
+.controls * {
+    display: inline;
     margin: 0 1rem;
 }
