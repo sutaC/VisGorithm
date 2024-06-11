@@ -33,8 +33,6 @@ function selectAlgorithm(name: string): JSX.Element {
 export default function Home() {
     const [currAlg, setCurrAlg] = useState("BubbleSort");
 
-    console.log(testSearch(binarySearch, true));
-
     return (
         <div className={styles.app}>
             <header>

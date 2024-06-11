@@ -72,7 +72,7 @@ async function partitionEnhanced(
         // Loop
         pointCode(3);
         update(array, [
-            pointer(i, style.idx),
+            pointer(i, style.index),
             pointer(idx, style.highlight),
             ...bdrs,
         ]);
@@ -102,14 +102,14 @@ async function partitionEnhanced(
             // Idx increment
             pointCode(6);
             update(array, [
-                pointer(i, style.idx),
+                pointer(i, style.index),
                 pointer(idx, style.highlight),
                 ...bdrs,
             ]);
             await wait(250);
             idx++;
             update(array, [
-                pointer(i, style.idx),
+                pointer(i, style.index),
                 pointer(idx, style.highlight),
                 ...bdrs,
             ]);
