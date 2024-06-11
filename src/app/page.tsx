@@ -1,9 +1,10 @@
 "use client";
 
-import { BubbleSortDisplay } from "@/components/algorithms/BubbleSortDisplay";
-import styles from "./page.module.css";
-import { InsertionSortDisplay } from "@/components/algorithms/InsertionSortDisplay";
 import { useState } from "react";
+import styles from "./page.module.css";
+import { BubbleSortDisplay } from "@/components/algorithms/BubbleSortDisplay";
+import { InsertionSortDisplay } from "@/components/algorithms/InsertionSortDisplay";
+import { SelectionSortDisplay } from "@/components/algorithms/SelectionSortDisplay";
 
 function selectAlgorithm(name: string): JSX.Element {
     switch (name) {
@@ -11,6 +12,8 @@ function selectAlgorithm(name: string): JSX.Element {
             return <BubbleSortDisplay />;
         case "InsertionSort":
             return <InsertionSortDisplay />;
+        case "SelectionSort":
+            return <SelectionSortDisplay />;
         default:
             console.warn(
                 `No algorithm was selected with provided name: ${name}`
@@ -30,6 +33,7 @@ export default function Home() {
                 <select onChange={(e) => setCurrAlg(e.target.value)}>
                     <option value="BubbleSort">Bubble Sort</option>
                     <option value="InsertionSort">Insertion Sort</option>
+                    <option value="SelectionSort">Selection Sort</option>
                 </select>
             </header>
             <main className={styles.main}>
