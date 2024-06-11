@@ -4,6 +4,9 @@ import { BubbleSortDisplay } from "@/components/algorithms/BubbleSortDisplay";
 import styles from "./page.module.css";
 import { InsertionSortDisplay } from "@/components/algorithms/InsertionSortDisplay";
 import { useState } from "react";
+import { selectionSort } from "@/algorithms/selectionSort";
+import { getRandomArray, testSort } from "@/algorithms/innerFunctions";
+import { insertionSort } from "@/algorithms/insertionSort";
 
 function selectAlgorithm(name: string): JSX.Element {
     switch (name) {

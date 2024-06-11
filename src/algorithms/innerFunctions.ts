@@ -36,3 +36,16 @@ export function pointer(index: number, style: string): Pointer {
 export function clone(v: any): any {
     return structuredClone(v);
 }
+
+export function testSort(alg: (arr: number[]) => number[]): boolean {
+    for (let i = 0; i < 100; i++) {
+        const sorted = alg(getRandomArray(100));
+        for (let j = 1; j < sorted.length; j++) {
+            if (sorted[j - 1] > sorted[j]) {
+                console.warn(`Array not sorted at idx ${j}: `, sorted);
+                return false;
+            }
+        }
+    }
+    return true;
+}
