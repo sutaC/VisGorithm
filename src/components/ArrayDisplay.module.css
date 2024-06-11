@@ -26,11 +26,71 @@
         translate: calc(-100% - 4px) 0;
     }
 }
+.swapLeft {
+    animation: swapLeft 500ms ease-in-out 0ms 1 normal forwards;
+}
 
 @keyframes swapRight {
     to {
         translate: calc(100% + 4px) 0;
     }
+}
+.swapRight {
+    animation: swapRight 500ms ease-in-out 0ms 1 normal forwards;
+}
+
+@keyframes swapLeftInverse {
+    from {
+        translate: calc(100% + 4px) 0;
+    }
+}
+
+@keyframes swapRightInverse {
+    from {
+        translate: calc(-100% - 4px) 0;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+.fadeOut {
+    animation: fadeOut 500ms ease-in-out 0ms 1 normal forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.fadeIn {
+    animation: fadeIn 500ms ease-in-out 0ms 1 normal forwards;
+}
+
+/* Combinations */
+.swapLeftFadeOut {
+    animation: fadeOut 500ms ease-in-out 0ms 1 normal forwards,
+        swapLeft 500ms ease-in-out 0ms 1 normal forwards;
+}
+
+.swapLeftFadeIn {
+    animation: fadeIn 500ms ease-in-out 0ms 1 normal forwards,
+        swapRightInverse 500ms ease-in-out 0ms 1 normal forwards;
+}
+
+.swapRightFadeOut {
+    animation: fadeOut 500ms ease-in-out 0ms 1 normal forwards,
+        swapRight 500ms ease-in-out 0ms 1 normal forwards;
+}
+
+.swapRightFadeIn {
+    animation: fadeIn 500ms ease-in-out 0ms 1 normal forwards,
+        swapLeftInverse 500ms ease-in-out 0ms 1 normal forwards;
 }
 
 /* Special states */
@@ -53,16 +113,14 @@
     background-color: lightyellow;
 }
 
-.swapGreater {
+.greater {
     outline: 2px solid green;
     background-color: lightgreen;
-    animation: swapRight 500ms ease-in-out 0ms 1 normal forwards;
 }
 
-.swapSmaller {
+.smaller {
     outline: 2px solid red;
     background-color: lightcoral;
-    animation: swapLeft 500ms ease-in-out 0ms 1 normal forwards;
 }
 
 .sorted {

@@ -67,10 +67,11 @@ export async function selectionSortEnhanced(
             await wait(500);
 
             if (array[j] < array[min]) {
+                pointCode(5);
+                await wait(250);
                 min = j;
             }
 
-            pointCode(3);
             update(array, [
                 pointer(j, style.index),
                 pointer(min, style.highlight),
@@ -81,13 +82,26 @@ export async function selectionSortEnhanced(
 
         // Swap
         pointCode(8);
-        update(array, [
-            pointer(i, style.swapGreater),
-            pointer(min, style.swapSmaller),
-            ...sorted,
-        ]);
-        await wait(500);
-        swap(array, i, min);
+        await wait(250);
+        if (min !== i) {
+            // Out
+            update(array, [
+                pointer(i, `${style.swapRightFadeOut} ${style.greater}`),
+                pointer(min, `${style.swapLeftFadeOut} ${style.smaller}`),
+                ...sorted,
+            ]);
+            await wait(500);
+
+            // In
+            update(array, []); // Animation reset
+            swap(array, i, min);
+            update(array, [
+                pointer(i, `${style.swapRightFadeIn} ${style.greater}`),
+                pointer(min, `${style.swapLeftFadeIn} ${style.smaller}`),
+                ...sorted,
+            ]);
+            await wait(500);
+        }
 
         sorted.push(pointer(i, style.sorted));
     }
