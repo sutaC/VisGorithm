@@ -6,6 +6,7 @@ import { BubbleSortDisplay } from "@/components/algorithms/BubbleSortDisplay";
 import { InsertionSortDisplay } from "@/components/algorithms/InsertionSortDisplay";
 import { SelectionSortDisplay } from "@/components/algorithms/SelectionSortDisplay";
 import { QuickSortDisplay } from "@/components/algorithms/QucikSortDisplay";
+import { LinearSearchDisplay } from "@/components/algorithms/LinearSearchDisplay";
 
 function selectAlgorithm(name: string): JSX.Element {
     switch (name) {
@@ -17,6 +18,8 @@ function selectAlgorithm(name: string): JSX.Element {
             return <SelectionSortDisplay />;
         case "QuickSort":
             return <QuickSortDisplay />;
+        case "LinearSearch":
+            return <LinearSearchDisplay />;
         default:
             console.warn(
                 `No algorithm was selected with provided name: ${name}`
@@ -38,6 +41,7 @@ export default function Home() {
                     <option value="InsertionSort">Insertion Sort</option>
                     <option value="SelectionSort">Selection Sort</option>
                     <option value="QuickSort">Quick Sort</option>
+                    <option value="LinearSearch">Linear Search</option>
                 </select>
             </header>
             <main className={styles.main}>

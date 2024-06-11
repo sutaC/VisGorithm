@@ -21,11 +21,11 @@ export function EFDisplay(props: {
     // search
     const [needle, setNeedle] = useState<number>(0);
 
-    let isRunningRef = useRef(false);
-    let isSortedRef = useRef(false);
+    let [isRunning, setIsRunning] = useState(false);
+    let [isDone, setIsDone] = useState(false);
 
     const randArr = () => {
-        if (isRunningRef.current) return;
+        if (isRunning) return;
         setArr(getRandomArray(10));
         if (props.options?.sorted) setArr(quickSort(arr));
         if (props.options?.search) {
@@ -34,12 +34,12 @@ export function EFDisplay(props: {
         }
         setPtrs([]);
         setCodePtr(null);
-        isSortedRef.current = false;
+        setIsDone(false);
     };
 
     const sortArr = async () => {
-        if (isRunningRef.current) return;
-        isRunningRef.current = true;
+        if (isRunning) return;
+        setIsRunning(true);
 
         const update = (array: number[], pointers: Pointer[]) => {
             setPtrs(pointers);
@@ -60,8 +60,8 @@ export function EFDisplay(props: {
             await props.EF(arr, update, pointCode);
         }
 
-        isRunningRef.current = false;
-        isSortedRef.current = true;
+        setIsRunning(false);
+        setIsDone(true);
     };
 
     return (
@@ -73,14 +73,11 @@ export function EFDisplay(props: {
             <CodeDisplay code={props.codeLines} pointer={codePtr} />
 
             <div className={styles.controls}>
-                <button onClick={randArr} disabled={isRunningRef.current}>
+                <button onClick={randArr} disabled={isRunning}>
                     Rand
                 </button>
-                <button
-                    onClick={sortArr}
-                    disabled={isRunningRef.current || isSortedRef.current}
-                >
-                    Sort
+                <button onClick={sortArr} disabled={isRunning || isDone}>
+                    Run
                 </button>
             </div>
         </div>
