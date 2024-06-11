@@ -44,6 +44,10 @@
     outline: 2px solid violet;
 }
 
+.highlight {
+    outline: 2px solid steelblue;
+}
+
 .nonSwap {
     outline: 2px solid yellow;
     background-color: lightyellow;
