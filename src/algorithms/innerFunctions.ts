@@ -3,8 +3,14 @@ import { Pointer } from "@/components/ArrayDisplay";
 // Types
 export type UpdateFunction = (array: number[], pointers: Pointer[]) => void;
 export type PointCodeFunction = (codePointer: number | null) => void;
-export type EnhancedSortingFunction = (
+export type EnhancedFunction = (
     arr: number[],
+    update: UpdateFunction,
+    pointCode: PointCodeFunction
+) => Promise<void>;
+export type EnhancedSearchFunction = (
+    arr: number[],
+    needle: number,
     update: UpdateFunction,
     pointCode: PointCodeFunction
 ) => Promise<void>;

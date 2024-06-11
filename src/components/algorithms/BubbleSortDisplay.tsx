@@ -1,8 +1,8 @@
 "use client";
 
 import { bubleSortEnhanced, codeLines } from "@/algorithms/bubbleSort";
-import { ESFDisplay } from "../ESFDisplay";
+import { EFDisplay } from "@/components/EFDisplay";
 
 export function BubbleSortDisplay() {
-    return <ESFDisplay ESF={bubleSortEnhanced} codeLines={codeLines} />;
+    return <EFDisplay EF={bubleSortEnhanced} codeLines={codeLines} />;
 }

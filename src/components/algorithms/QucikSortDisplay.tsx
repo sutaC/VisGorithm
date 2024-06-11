@@ -1,8 +1,8 @@
 "use client";
 
-import { ESFDisplay } from "../ESFDisplay";
+import { EFDisplay } from "@/components/EFDisplay";
 import { quickSortEnhanced, codeLines } from "@/algorithms/quickSort";
 
 export function QuickSortDisplay() {
-    return <ESFDisplay ESF={quickSortEnhanced} codeLines={codeLines} />;
+    return <EFDisplay EF={quickSortEnhanced} codeLines={codeLines} />;
 }

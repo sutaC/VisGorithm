@@ -1,8 +1,8 @@
 "use client";
 
-import { ESFDisplay } from "../ESFDisplay";
+import { EFDisplay } from "@/components/EFDisplay";
 import { codeLines, selectionSortEnhanced } from "@/algorithms/selectionSort";
 
 export function SelectionSortDisplay() {
-    return <ESFDisplay ESF={selectionSortEnhanced} codeLines={codeLines} />;
+    return <EFDisplay EF={selectionSortEnhanced} codeLines={codeLines} />;
 }

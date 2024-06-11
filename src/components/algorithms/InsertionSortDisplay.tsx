@@ -1,8 +1,8 @@
 "use client";
 
 import { insertionSortEnhanced, codeLines } from "@/algorithms/insertionSort";
-import { ESFDisplay } from "../ESFDisplay";
+import { EFDisplay } from "@/components/EFDisplay";
 
 export function InsertionSortDisplay() {
-    return <ESFDisplay ESF={insertionSortEnhanced} codeLines={codeLines} />;
+    return <EFDisplay EF={insertionSortEnhanced} codeLines={codeLines} />;
 }

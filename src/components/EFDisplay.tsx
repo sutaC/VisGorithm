@@ -1,21 +1,25 @@
-"use client";
-
-import styles from "./ESFDisplay.module.css";
-import { useRef, useState } from "react";
-import ArrayDisplay, { Pointer } from "@/components/ArrayDisplay";
-import { CodeDisplay } from "@/components/CodeDisplay";
+import styles from "./EFDisplay.module.css";
+import ArrayDisplay, { Pointer } from "./ArrayDisplay";
+import { CodeDisplay } from "./CodeDisplay";
 import {
+    EnhancedFunction,
+    EnhancedSearchFunction,
     getRandomArray,
-    EnhancedSortingFunction,
 } from "@/algorithms/innerFunctions";
+import { useRef, useState } from "react";
+import { quickSort } from "@/algorithms/quickSort";
 
-export function ESFDisplay(props: {
-    ESF: EnhancedSortingFunction;
+export function EFDisplay(props: {
+    EF: EnhancedFunction;
     codeLines: string[];
+    options?: { search?: boolean; sorted?: boolean };
 }) {
     const [arr, setArr] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     const [ptrs, setPtrs] = useState<Pointer[]>([]);
     const [codePtr, setCodePtr] = useState<number | null>(null);
+
+    // search
+    const [needle, setNeedle] = useState<number>(0);
 
     let isRunningRef = useRef(false);
     let isSortedRef = useRef(false);
@@ -23,6 +27,11 @@ export function ESFDisplay(props: {
     const randArr = () => {
         if (isRunningRef.current) return;
         setArr(getRandomArray(10));
+        if (props.options?.sorted) setArr(quickSort(arr));
+        if (props.options?.search) {
+            const randIdx = Math.floor(Math.random() * arr.length);
+            setNeedle(arr[randIdx]);
+        }
         setPtrs([]);
         setCodePtr(null);
         isSortedRef.current = false;
@@ -31,20 +40,34 @@ export function ESFDisplay(props: {
     const sortArr = async () => {
         if (isRunningRef.current) return;
         isRunningRef.current = true;
-        await props.ESF(
-            arr,
-            (array, pointers) => {
-                setPtrs(pointers);
-                setArr(array);
-            },
-            (codePointer) => setCodePtr(codePointer)
-        );
+
+        const update = (array: number[], pointers: Pointer[]) => {
+            setPtrs(pointers);
+            setArr(array);
+        };
+        const pointCode = (codePointer: number | null) =>
+            setCodePtr(codePointer);
+
+        // Call
+        if (props.options?.search) {
+            // Search
+            const fn: EnhancedSearchFunction =
+                props.EF as unknown as EnhancedSearchFunction;
+
+            await fn(arr, needle, update, pointCode);
+        } else {
+            // Default
+            await props.EF(arr, update, pointCode);
+        }
+
         isRunningRef.current = false;
         isSortedRef.current = true;
     };
 
     return (
         <div className={styles.display}>
+            {props.options?.search ? <p>Search for: {needle}</p> : <></>}
+
             <ArrayDisplay array={arr} pointers={ptrs}></ArrayDisplay>
 
             <CodeDisplay code={props.codeLines} pointer={codePtr} />
