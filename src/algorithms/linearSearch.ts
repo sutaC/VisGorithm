@@ -42,7 +42,7 @@ export async function linearSearchEnhanced(
         await wait(500);
         if (array[i] === needle) {
             pointCode(3);
-            update(array, [pointer(i, style.greater), ...notFound]);
+            update(array, [pointer(i, style.sorted), ...notFound]);
             await wait(500);
             // Found
             return;
