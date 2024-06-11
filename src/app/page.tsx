@@ -7,6 +7,8 @@ import { InsertionSortDisplay } from "@/components/algorithms/InsertionSortDispl
 import { SelectionSortDisplay } from "@/components/algorithms/SelectionSortDisplay";
 import { QuickSortDisplay } from "@/components/algorithms/QucikSortDisplay";
 import { LinearSearchDisplay } from "@/components/algorithms/LinearSearchDisplay";
+import { binarySearch } from "@/algorithms/binarySearch";
+import { getRandomArray, testSearch } from "@/algorithms/innerFunctions";
 
 function selectAlgorithm(name: string): JSX.Element {
     switch (name) {
@@ -30,6 +32,8 @@ function selectAlgorithm(name: string): JSX.Element {
 
 export default function Home() {
     const [currAlg, setCurrAlg] = useState("BubbleSort");
+
+    console.log(testSearch(binarySearch, true));
 
     return (
         <div className={styles.app}>

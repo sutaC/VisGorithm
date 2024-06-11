@@ -1,4 +1,5 @@
 import { Pointer } from "@/components/ArrayDisplay";
+import { quickSort } from "./quickSort";
 
 // Types
 export type UpdateFunction = (array: number[], pointers: Pointer[]) => void;
@@ -48,9 +49,37 @@ export function testSort(alg: (arr: number[]) => number[]): boolean {
         const sorted = alg(getRandomArray(100));
         for (let j = 1; j < sorted.length; j++) {
             if (sorted[j - 1] > sorted[j]) {
-                console.warn(`Array not sorted at idx ${j}: `, sorted);
+                console.error(`Array not sorted at idx ${j}: `, sorted);
                 return false;
             }
+        }
+    }
+    return true;
+}
+
+export function testSearch(
+    alg: (arr: number[], needle: number) => number,
+    sorted?: boolean
+): boolean {
+    for (let i = 0; i < 100; i++) {
+        let arr: number[] = getRandomArray(100);
+        if (sorted) arr = quickSort(arr);
+        let needle: number;
+        if (Math.random() > 0.95) {
+            // Has
+            needle = arr[Math.floor(Math.random() * arr.length)];
+        } else {
+            // Not
+            [needle] = getRandomArray(1);
+        }
+        const res = alg(arr, needle);
+        const trueIdx = arr.indexOf(needle);
+        if (arr[res] !== arr[trueIdx]) {
+            console.error(
+                `Got wrong result (${res}) what suposed to be (${trueIdx})`,
+                arr
+            );
+            return false;
         }
     }
     return true;
