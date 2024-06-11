@@ -84,7 +84,7 @@ export async function insertionSortEnhanced(
 // Code lines
 
 export const codeLines: string[] = [
-    "function insertionSort(arr: number[]): void {",
+    "function insertionSort(array: number[]): void {",
     "    for (let i = 1; i < array.length; i++) {",
     "        for (let j = i; j > 0 && array[j] < array[j - 1]; j--) {",
     "            swap(array, j - 1, j);",
