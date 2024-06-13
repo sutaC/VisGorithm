@@ -83,21 +83,43 @@ async function partitionEnhanced(
         await wait(250);
         if (array[i] <= pivot) {
             pointCode(5);
-            // Out
-            update(array, [
-                pointer(idx, `${style.greater} ${style.fadeOut}`),
-                pointer(i, `${style.smaller} ${style.fadeOut}`),
-                ...bdrs,
-            ]);
-            await wait(500);
-            // In
-            swap(array, i, idx);
-            update(array, [
-                pointer(idx, `${style.greater} ${style.fadeIn}`),
-                pointer(i, `${style.smaller} ${style.fadeIn}`),
-                ...bdrs,
-            ]);
-            await wait(500);
+
+            if (idx < i - 1) {
+                // Long swap
+                // Out
+                update(array, [
+                    pointer(idx, `${style.greater} ${style.swapRightFadeOut}`),
+                    pointer(i, `${style.smaller} ${style.swapLeftFadeOut}`),
+                    ...bdrs,
+                ]);
+                await wait(500);
+                // In
+                swap(array, i, idx);
+                update(array, [
+                    pointer(idx, `${style.smaller} ${style.swapRightFadeIn}`),
+                    pointer(i, `${style.greater} ${style.swapLeftFadeIn}`),
+                    ...bdrs,
+                ]);
+                await wait(500);
+            } else if (idx === i - 1) {
+                // Short swap
+                update(array, [
+                    pointer(idx, `${style.swapRight} ${style.greater}`),
+                    pointer(i, `${style.swapLeft} ${style.smaller}`),
+                    ...bdrs,
+                ]);
+                await wait(1000);
+                swap(array, i, idx);
+            } else {
+                // No animation
+                update(array, [
+                    pointer(idx, style.greater),
+                    pointer(i, style.smaller),
+                    ...bdrs,
+                ]);
+                await wait(1000);
+                swap(array, i, idx);
+            }
 
             // Idx increment
             pointCode(6);
@@ -126,21 +148,42 @@ async function partitionEnhanced(
 
     // Pivot swap
     pointCode(6);
-    // Out
-    update(array, [
-        pointer(idx, `${style.greater} ${style.fadeOut}`),
-        pointer(hi, `${style.smaller} ${style.fadeOut}`),
-        ...bdrs,
-    ]);
-    await wait(500);
-    // In
-    swap(array, hi, idx);
-    update(array, [
-        pointer(idx, `${style.greater} ${style.fadeIn}`),
-        pointer(hi, `${style.smaller} ${style.fadeIn}`),
-        ...bdrs,
-    ]);
-    await wait(500);
+    if (idx < hi - 1) {
+        // Long swap
+        // Out
+        update(array, [
+            pointer(idx, `${style.greater} ${style.swapRightFadeOut}`),
+            pointer(hi, `${style.smaller} ${style.swapLeftFadeOut}`),
+            ...bdrs,
+        ]);
+        await wait(500);
+        // In
+        swap(array, hi, idx);
+        update(array, [
+            pointer(idx, `${style.smaller} ${style.swapRightFadeIn}`),
+            pointer(hi, `${style.greater} ${style.swapLeftFadeIn}`),
+            ...bdrs,
+        ]);
+        await wait(500);
+    } else if (idx === hi - 1) {
+        // Short swap
+        update(array, [
+            pointer(idx, `${style.swapRight} ${style.greater}`),
+            pointer(hi, `${style.swapLeft} ${style.smaller}`),
+            ...bdrs,
+        ]);
+        await wait(1000);
+        swap(array, hi, idx);
+    } else {
+        // No animation
+        update(array, [
+            pointer(idx, style.greater),
+            pointer(hi, style.smaller),
+            ...bdrs,
+        ]);
+        await wait(1000);
+        swap(array, hi, idx);
+    }
 
     // Return
     pointCode(9);
