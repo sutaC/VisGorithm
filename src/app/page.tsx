@@ -8,6 +8,7 @@ import { SelectionSortDisplay } from "@/components/algorithms/SelectionSortDispl
 import { QuickSortDisplay } from "@/components/algorithms/QucikSortDisplay";
 import { LinearSearchDisplay } from "@/components/algorithms/LinearSearchDisplay";
 import { BinarySearchDisplay } from "@/components/algorithms/BinarySearchDisplay";
+import { QueueDisplayEnhanced } from "@/components/ds/QueueDisplayEnhanced";
 
 function selectAlgorithm(name: string): JSX.Element {
     switch (name) {
@@ -23,6 +24,8 @@ function selectAlgorithm(name: string): JSX.Element {
             return <LinearSearchDisplay />;
         case "BinarySearch":
             return <BinarySearchDisplay />;
+        case "Queue":
+            return <QueueDisplayEnhanced />;
         default:
             console.warn(
                 `No algorithm was selected with provided name: ${name}`
@@ -46,6 +49,7 @@ export default function Home() {
                     <option value="QuickSort">Quick Sort</option>
                     <option value="LinearSearch">Linear Search</option>
                     <option value="BinarySearch">Binary Search</option>
+                    <option value="Queue">Queue</option>
                 </select>
             </header>
             <main className={styles.main}>

@@ -5,6 +5,8 @@
     gap: 0.5em;
     isolation: isolate;
     font-size: calc(0.5vw + 1em);
+    max-width: 80rem;
+    margin: auto;
 }
 
 .node {
@@ -18,4 +20,11 @@
     align-items: center;
 
     transition: all 200ms ease;
+}
+
+.nodeContainer {
+    display: inherit;
+    justify-content: inherit;
+    align-items: inherit;
+    gap: inherit;
 }
