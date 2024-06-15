@@ -1,6 +1,9 @@
 "use client";
 
-import { insertionSortEnhanced, codeLines } from "@/algorithms/insertionSort";
+import {
+    insertionSortEnhanced,
+    codeLines,
+} from "@/algorithms/sorts/insertionSort";
 import { EFDisplay } from "@/components/EFDisplay";
 
 export function InsertionSortDisplay() {

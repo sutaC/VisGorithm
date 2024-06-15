@@ -4,7 +4,7 @@ import {
     UpdateFunction,
     pointer,
     wait,
-} from "./innerFunctions";
+} from "../sorts/innerFunctions";
 import { Pointer } from "@/components/ArrayDisplay";
 
 // Original

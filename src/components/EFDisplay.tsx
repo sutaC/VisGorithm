@@ -5,9 +5,9 @@ import {
     EnhancedFunction,
     EnhancedSearchFunction,
     getRandomArray,
-} from "@/algorithms/innerFunctions";
+} from "@/algorithms/sorts/innerFunctions";
 import { useState } from "react";
-import { quickSort } from "@/algorithms/quickSort";
+import { quickSort } from "@/algorithms/sorts/quickSort";
 
 export function EFDisplay(props: {
     EF: EnhancedFunction;

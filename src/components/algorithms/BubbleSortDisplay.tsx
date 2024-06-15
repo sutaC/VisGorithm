@@ -1,6 +1,6 @@
 "use client";
 
-import { bubleSortEnhanced, codeLines } from "@/algorithms/bubbleSort";
+import { bubleSortEnhanced, codeLines } from "@/algorithms/sorts/bubbleSort";
 import { EFDisplay } from "@/components/EFDisplay";
 
 export function BubbleSortDisplay() {
