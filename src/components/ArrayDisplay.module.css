@@ -4,11 +4,11 @@
     align-items: center;
     gap: 4px;
     isolation: isolate;
+    font-size: calc(0.5vw + 1em);
 }
 
 .cell {
-    width: 4rem;
-    font-size: calc(0.5vw + 1em);
+    width: 4em;
     aspect-ratio: 1;
     border: 1px solid #000;
 

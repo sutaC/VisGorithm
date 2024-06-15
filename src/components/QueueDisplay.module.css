@@ -1,0 +1,21 @@
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    isolation: isolate;
+    font-size: calc(0.5vw + 1em);
+}
+
+.node {
+    border-radius: 100%;
+    width: 4em;
+    aspect-ratio: 1;
+    border: 1px solid #000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 200ms ease;
+}
