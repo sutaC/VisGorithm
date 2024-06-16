@@ -1,11 +1,12 @@
 import styles from "./EFDisplay.module.css";
-import ArrayDisplay, { Pointer } from "./ArrayDisplay";
+import ArrayDisplay from "./ArrayDisplay";
 import { CodeDisplay } from "./CodeDisplay";
 import {
     EnhancedFunction,
     EnhancedSearchFunction,
+    Pointer,
     getRandomArray,
-} from "@/algorithms/sorts/innerFunctions";
+} from "@/algorithms/innerFunctions";
 import { useState } from "react";
 import { quickSort } from "@/algorithms/sorts/quickSort";
 

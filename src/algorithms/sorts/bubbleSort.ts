@@ -1,11 +1,11 @@
-import { Pointer } from "@/components/ArrayDisplay";
 import {
     PointCodeFunction,
+    Pointer,
     UpdateFunction,
     clone,
     pointer,
-} from "./innerFunctions";
-import { swap, wait } from "./innerFunctions";
+} from "../innerFunctions";
+import { swap, wait } from "../innerFunctions";
 import styles from "@/components/ArrayDisplay.module.css";
 
 // Original

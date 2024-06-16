@@ -4,7 +4,7 @@ import styles from "./QueueDisplayEnhanced.module.css";
 import { useState } from "react";
 import { QueueEnhanced } from "@/algorithms/ds/Queue";
 import { QueueDisplay } from "../QueueDisplay";
-import { getRandomArray } from "@/algorithms/sorts/innerFunctions";
+import { getRandomArray } from "@/algorithms/innerFunctions";
 
 export function QueueDisplayEnhanced() {
     const [queue, setQueue] = useState(new QueueEnhanced([0, 0, 0, 0, 0]));

@@ -1,13 +1,13 @@
 import style from "@/components/ArrayDisplay.module.css";
 import {
     PointCodeFunction,
+    Pointer,
     UpdateFunction,
     clone,
     pointer,
     swap,
     wait,
-} from "./innerFunctions";
-import { Pointer } from "@/components/ArrayDisplay";
+} from "../innerFunctions";
 
 // Original
 function partition(array: number[], lo: number, hi: number): number {

@@ -1,5 +1,4 @@
-import { Pointer } from "@/components/ArrayDisplay";
-import { quickSort } from "./quickSort";
+import { quickSort } from "./sorts/quickSort";
 
 // Types
 export type UpdateFunction = (array: number[], pointers: Pointer[]) => void;
@@ -15,6 +14,11 @@ export type EnhancedSearchFunction = (
     update: UpdateFunction,
     pointCode: PointCodeFunction
 ) => Promise<void>;
+
+export interface Pointer {
+    index: number;
+    style: string;
+}
 
 // Functions
 export function swap(array: number[], a: number, b: number) {

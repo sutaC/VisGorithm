@@ -1,9 +1,5 @@
+import { Pointer } from "@/algorithms/innerFunctions";
 import style from "./ArrayDisplay.module.css";
-
-export interface Pointer {
-    index: number;
-    style: string;
-}
 
 function applyStyles(index: number, pointers: Pointer[]): string {
     let out = "";

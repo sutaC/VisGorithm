@@ -1,5 +1,4 @@
 import styles from "@/components/ArrayDisplay.module.css";
-import { Pointer } from "@/components/ArrayDisplay";
 import {
     swap,
     pointer,
@@ -7,7 +6,8 @@ import {
     PointCodeFunction,
     clone,
     wait,
-} from "./innerFunctions";
+    Pointer,
+} from "../innerFunctions";
 
 // Original
 export function insertionSort(arr: number[]): number[] {

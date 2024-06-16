@@ -1,11 +1,11 @@
 import style from "@/components/ArrayDisplay.module.css";
 import {
     PointCodeFunction,
+    Pointer,
     UpdateFunction,
     pointer,
     wait,
-} from "../sorts/innerFunctions";
-import { Pointer } from "@/components/ArrayDisplay";
+} from "../innerFunctions";
 
 // Original
 export function linearSearch(array: number[], needle: number): number {

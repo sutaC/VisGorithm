@@ -1,13 +1,13 @@
 import style from "@/components/ArrayDisplay.module.css";
-import { Pointer } from "@/components/ArrayDisplay";
 import {
     PointCodeFunction,
+    Pointer,
     UpdateFunction,
     clone,
     pointer,
     swap,
     wait,
-} from "./innerFunctions";
+} from "../innerFunctions";
 
 // Original
 export function selectionSort(arr: number[]): number[] {
