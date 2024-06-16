@@ -88,3 +88,13 @@ export function testSearch(
     }
     return true;
 }
+
+export function applyStyles(index: number, pointers: Pointer[]): string {
+    let out = "";
+    pointers.forEach((ptr) => {
+        if (ptr.index === index) {
+            out += " " + ptr.style;
+        }
+    });
+    return out;
+}

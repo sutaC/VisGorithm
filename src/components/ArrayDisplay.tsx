@@ -1,30 +1,20 @@
-import { Pointer } from "@/algorithms/innerFunctions";
+import { Pointer, applyStyles } from "@/algorithms/innerFunctions";
 import style from "./ArrayDisplay.module.css";
 
-function applyStyles(index: number, pointers: Pointer[]): string {
-    let out = "";
-    pointers.forEach((ptr) => {
-        if (ptr.index === index) {
-            out += " " + ptr.style;
-        }
-    });
-    return out;
-}
-
-export default function ArrayDisplay(prop: {
+export default function ArrayDisplay(props: {
     array: number[];
     pointers?: Pointer[];
 }) {
     return (
         <div className={style.display}>
-            {prop.array.map((val, index) => (
+            {props.array.map((val, index) => (
                 <div
                     key={index}
                     className={`
                         ${style.cell} 
                         ${
-                            prop.pointers
-                                ? applyStyles(index, prop.pointers)
+                            props.pointers
+                                ? applyStyles(index, props.pointers)
                                 : ""
                         }
                         `}
