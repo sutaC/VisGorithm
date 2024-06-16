@@ -28,3 +28,43 @@
     align-items: inherit;
     gap: inherit;
 }
+
+/* Animations */
+
+@keyframes dequeue {
+    to {
+        opacity: 0;
+        translate: -100% 0;
+    }
+}
+
+@keyframes enqueue {
+    from {
+        opacity: 0;
+        translate: 100% 0;
+    }
+}
+
+/* Pointers styles */
+
+.enqueue {
+    border-color: yellowgreen;
+    background-color: lightgreen;
+    animation: enqueue 500ms ease-in 0ms 1 normal forwards;
+}
+
+.dequeue {
+    border-color: red;
+    background-color: lightcoral;
+    animation: dequeue 500ms ease-out 0ms 1 normal forwards;
+}
+
+.dequeue + .arrow {
+    animation: dequeue 500ms ease-out 0ms 1 normal forwards;
+}
+
+@supports selector(:has(*)) {
+    .nodeContainer:has(+ .nodeContainer > .enqueue) .arrow {
+        animation: enqueue 500ms ease-in 0ms 1 normal forwards;
+    }
+}
