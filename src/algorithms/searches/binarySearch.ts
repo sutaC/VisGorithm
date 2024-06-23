@@ -4,8 +4,8 @@ import {
     UpdateFunction,
     pointer,
     wait,
+    Pointer,
 } from "../innerFunctions";
-import { Pointer } from "@/components/ArrayDisplay";
 
 // Original
 export function binarySearch(array: number[], needle: number): number {
